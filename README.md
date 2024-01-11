@@ -25,20 +25,20 @@ has_many :orders
 | category_id        | integer    | null: false                    |
 | condition_id       | integer    | null: false                    |
 | delivery_charge_id | integer    | null: false                    |
-| prefectures_id     | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | delivery_time_id   | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| user_id            | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
 
 - belongs_to :user
 - has_one :order
 
 ## orders テーブル
 
-| Column  | Type      | Option                         |
-| ------- | --------- | ------------------------------ |
-| user_id | reference | null: false, foreign_key: true |
-| item_id | reference | null: false, foreign_key: true |
+| Column  | Type       | Option                         |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
 
 - belongs_to :user
 - belongs_to :item
@@ -46,14 +46,14 @@ has_many :orders
 
 ## addresses テーブル
 
-| Column         | Type      | Option                         |
-| -------------- | --------- | ------------------------------ |
-| post_code      | string    | null: false                    |
-| prefectures_id | integer   | null: false                    |
-| municipalities | string    | null: false                    | 
-| street_address | string    | null: false                    |
-| building_name  | string    |                                |
-| phone_number   | string    | null: false                    |
-| order_id       | reference | null: false, foreign_key: true |
+| Column         | Type       | Option                         |
+| -------------- | ---------- | ------------------------------ |
+| post_code      | string     | null: false                    |
+| prefecture_id  | integer    | null: false                    |
+| municipalities | string     | null: false                    | 
+| street_address | string     | null: false                    |
+| building_name  | string     |                                |
+| phone_number   | string     | null: false                    |
+| order          | references | null: false, foreign_key: true |
 
 - belongs_to :order
