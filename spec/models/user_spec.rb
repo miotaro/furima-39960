@@ -28,25 +28,25 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
-      it "first_nameが空では登録できない" do
-        @user.first_name = ''
-        @user.valid?
-        expect(@user.errors.full_messages).to include("First name can't be blank")
-      end
       it "last_nameが空では登録できない" do
         @user.last_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
-      it "first_name_rubyが空では登録できない" do
-        @user.first_name_ruby = ''
+      it "first_nameが空では登録できない" do
+        @user.first_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name ruby can't be blank")
+        expect(@user.errors.full_messages).to include("First name can't be blank")
       end
       it "last_name_rubyが空では登録できない" do
         @user.last_name_ruby = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name ruby can't be blank")
+      end
+      it "first_name_rubyが空では登録できない" do
+        @user.first_name_ruby = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name ruby can't be blank")
       end
       it "bithdayが空では登録できない" do
         @user.birthday = ''
