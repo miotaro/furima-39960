@@ -18,6 +18,6 @@ class User < ApplicationRecord
     validates :first_name_ruby
   end
 
-  # has_many :items
+  has_many :items
   # has_many :orders
 end
