@@ -7,8 +7,7 @@ class Item < ApplicationRecord
   validates :delivery_charge_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :delivery_time_id, numericality: { other_than: 1 , message: "can't be blank"} 
-  validates :price, presence: true, numericality: { only_integer: true, message: 'is not a number' }
-
+  validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: 'is not a number' }
   belongs_to :user
 
 
