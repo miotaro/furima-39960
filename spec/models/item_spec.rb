@@ -56,12 +56,12 @@ RSpec.describe Item, type: :model do
       it 'priceは¥300~¥9999999の間でないと出品できない' do
         @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceは全角を含む数字だと保存できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'imageが空では出品できない' do
         @item.image = nil
