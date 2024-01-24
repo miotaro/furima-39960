@@ -8,7 +8,4 @@ class DeliveryCharge < ActiveHash::Base
   include ActiveHash::Associations
   has_many :items
 
-  def to_s
-    name
-  end
 end
