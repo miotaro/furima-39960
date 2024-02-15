@@ -1,10 +1,12 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!, except: :index
+  before_action :move_to_signin
   before_action :move_to_page
+  before_action :move_to_index
 
   def index
-    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_address = OrderAddress.new
   end
 
@@ -15,7 +17,7 @@ class OrdersController < ApplicationController
       @order_address.save
       redirect_to root_path
     else
-      gon.public_key = ENV['PAYJP_PUBLIC_KEY']
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index, status: :unprocessable_entity
     end
   end
@@ -27,25 +29,34 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order_address).permit(:post_code, :prefecture_id, :municipalities, :street_address, :building_name, :phone_number).merge(
-      user_id: current_user.id, item_id: params[:item_id], token: params[:token]
-    )
+    params.require(:order_address).permit(:post_code, :prefecture_id, :municipalities, :street_address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])  
+  end
+
+  def move_to_signin
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
   end
 
   def move_to_page
-    redirect_to new_user_session_path unless user_signed_in?
-    return unless current_user.id == @item.user_id || @item.order
-
-    redirect_to root_path
-    nil
+    if current_user.id == @item.user_id
+      redirect_to root_path 
+      return
+    end
   end
 
+  def move_to_index
+    if @item.order
+      redirect_to root_path
+    end
+  end
+  
   def pay_item
-    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item.price,
       card: order_params[:token],
-      currency: 'jpy' # メモ：通貨の種類（日本円）
+      currency: 'jpy'                 # メモ：通貨の種類（日本円）
     )
   end
 end
