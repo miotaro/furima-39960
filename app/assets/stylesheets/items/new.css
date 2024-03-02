@@ -40,6 +40,11 @@
   font-weight: bold;
 }
 
+.preview-image {
+  width: 500px;
+  object-fit: cover;
+}
+
 .weight-bold-text {
   font-weight: bold;
   min-width: 170px;
