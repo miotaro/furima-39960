@@ -26,52 +26,52 @@ RSpec.describe Item, type: :model do
       it 'category_idが空では出品できない' do
         @item.category_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category を入力してください。")
       end
       it 'category_idが1だと保存できない' do
         @item.category_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category を入力してください。")
       end
       it 'condition_idが空では出品できない' do
         @item.condition_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition can't be blank")
+        expect(@item.errors.full_messages).to include("Condition を入力してください。")
       end
       it 'condition_idが1だと保存できない' do
         @item.condition_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition can't be blank")
+        expect(@item.errors.full_messages).to include("Condition を入力してください。")
       end
       it 'delivery_charge_idが空では出品できない' do
         @item.delivery_charge_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery charge を入力してください。")
       end
       it 'delivery_charge_idが1だと保存できない' do
         @item.delivery_charge_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery charge を入力してください。")
       end
       it 'prefecture_idが空では出品できない' do
         @item.prefecture_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include("Prefecture を入力してください。")
       end
       it 'prefecture_idが1だと保存できない' do
         @item.prefecture_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include("Prefecture を入力してください。")
       end
       it 'delivery_time_idが空では出品できない' do
         @item.delivery_time_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery time can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery time を入力してください。")
       end
       it 'delivery_time_idが1だと保存できない' do
         @item.delivery_time_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery time can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery time を入力してください。")
       end
       it 'priceが空では出品できない' do
         @item.price = ''
@@ -81,17 +81,17 @@ RSpec.describe Item, type: :model do
       it 'priceは¥9999999を超えると出品できない' do
         @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not a number')
+        expect(@item.errors.full_messages).to include('Price は半角数字で入力してください。')
       end
       it 'priceは¥300を下回ると出品できない' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not a number')
+        expect(@item.errors.full_messages).to include('Price は半角数字で入力してください。')
       end
       it 'priceは全角を含む数字だと保存できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not a number')
+        expect(@item.errors.full_messages).to include('Price は半角数字で入力してください。')
       end
       it 'imageが空では出品できない' do
         @item.image = nil
