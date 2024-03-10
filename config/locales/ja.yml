@@ -28,7 +28,3 @@ ja:
         phone_number: 電話番号
         token: クレジットカード情報
         prefecture_id: 都道府県
-  errors:
-    messages:
-      three_four: は3桁-4桁の半角数字で入力してください。
-      short: が短いです。10~11桁で入力してください。
